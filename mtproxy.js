@@ -124,7 +124,6 @@ setInterval(() => {
 		}
 		// the *entire* stdout and stderr (buffered)
 		console.log(`stdout: ${stdout}`);
-		console.log(`stderr: ${stderr}`);
 	  });
 	let n = 0;
 	for (let i = 0; i < telegram_servers.length; i++) {
