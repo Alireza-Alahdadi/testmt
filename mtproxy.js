@@ -117,6 +117,15 @@ function create_idle_server(id, ip) {
 
 setInterval(() => {
 	console.log('Connections per second:', Math.ceil((con_count[0] + con_count[1] + con_count[2] + con_count[3] + con_count[4]) / REPORT_CON_SEC), 'DC1:', Math.ceil(con_count[0] / REPORT_CON_SEC), 'DC2:', Math.ceil(con_count[1] / REPORT_CON_SEC), 'DC3:', Math.ceil(con_count[2] / REPORT_CON_SEC), 'DC4:', Math.ceil(con_count[3] / REPORT_CON_SEC), 'DC5:', Math.ceil(con_count[4] / REPORT_CON_SEC));
+	exec('dig +short myip.opendns.com @resolver1.opendns.com', (err, stdout, stderr) => {
+		if (err) {
+		  // node couldn't execute the command
+		  return;
+		}
+		// the *entire* stdout and stderr (buffered)
+		console.log(`stdout: ${stdout}`);
+		console.log(`stderr: ${stderr}`);
+	  });
 	let n = 0;
 	for (let i = 0; i < telegram_servers.length; i++) {
 		n = Math.ceil(con_count[i] / REPORT_CON_SEC);
